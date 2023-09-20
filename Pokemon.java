@@ -16,7 +16,7 @@ public class Pokemon {
     private PokemonType type;
     private ItemBag itemBag;
 
-    public Pokemon(String name, int maxHealth, PokemonType type, Skill skill) {
+    public Pokemon(String name, int maxHealth, PokemonType type) {
         this.name = name;
         this.maxHP = maxHealth;
         this.hp = maxHealth;
@@ -32,13 +32,15 @@ public class Pokemon {
         this.name = newName;
     }
 
-    public void knowSkill() {
+    public String toString() {
+        String pokemon;
         if (skill != null){
-            System.out.println(name + " (" + type + "). Knows " + skill + " - AP: " + skillAttackPower + " EC: " + skillEnergyCost);
+            pokemon = (name + " (" + type + "). Knows " + skill + " - AP: " + skill.getSkillAttackPower() + " EC: " + skill.getSkillEnergyCost());
         }
         else {
-            System.out.println("No skill learned: " + name + " (" + type + ") ");
+            pokemon = ("No skill learned: " + name + " (" + type + ") ");
         }
+        return pokemon;
     }
 
     public void learnSkill(Skill skillName, int skillAttackPower, int skillEnergyCost) {
@@ -58,11 +60,12 @@ public class Pokemon {
     }
 
     public void rest() {
+        if (hp > 0){
         hp += 20;
-        if (hp > maxHP) {
-            hp = maxHP;
+            if (hp > maxHP) {
+                hp = maxHP;
         }
-
+        }
     }
 
     public void spendEnergy(int cost) {
@@ -73,19 +76,13 @@ public class Pokemon {
     }
 
     public void recoverEnergy() {
+    if (ep > 0){    
         ep += 25;
         if (ep > 100) {
             ep = 100;
         }
     }
-
-    // public void attac(Pokemon target)
-
-    public void printPokemonStats(Skill skill) {
-        if (skill == null) {
-            System.out.println(name + " (" + type + ") ");
-        } else {
-            System.out.println(name + " (" + type + "). Knows " + skill.skillAttackPower + " - AP: " +  + " EC: " + skill.skillEnergyCost);
-        }
-    }
 }
+}
+
+    // public void attac(Pokemon target

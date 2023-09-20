@@ -7,7 +7,12 @@ public class Skill {
         this.name = name;
         this.skillAttackPower = skillAttackPower;
         this.skillEnergyCost = skillEnergyCost;
-
+    }
+    public int getSkillAttackPower(){
+        return this.skillAttackPower;
+    }
+    public int getSkillEnergyCost(){
+        return this.skillEnergyCost;
     }
 
 }
