@@ -1,10 +1,7 @@
 public class Pokemon {
 
 
-    private final String SKILL_FIRE_BLAST = "Fire Blast";
-    private final String SKILL_WATER_GUN = "Water Gun";
-    private final String SKILL_SOLAR_BEAM = "Solar Beam";
-    private final String SKILL_TACKLE = "Tackle";
+   
 
     // EP is short for Energy Points
     // AP is short for Attack Power

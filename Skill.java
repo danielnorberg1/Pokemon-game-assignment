@@ -9,14 +9,19 @@ public class Skill {
         this.skillAttackPower = skillAttackPower;
         this.skillEnergyCost = skillEnergyCost;
     }
+
+    
     public int getSkillAttackPower(){
         return this.skillAttackPower;
     }
     public int getSkillEnergyCost(){
         return this.skillEnergyCost;
+    }
     
     public String toString(){
         return name + " - AP: " + skillAttackPower + " EC: " + skillEnergyCost;
     }
+
+
 
 }
