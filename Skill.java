@@ -1,4 +1,5 @@
 public class Skill {
+
     private String name;
     private int skillAttackPower;
     private int skillEnergyCost;
@@ -7,7 +8,10 @@ public class Skill {
         this.name = name;
         this.skillAttackPower = skillAttackPower;
         this.skillEnergyCost = skillEnergyCost;
-
+    }
+    
+    public String toString(){
+        return name + " - AP: " + skillAttackPower + " EC: " + skillEnergyCost;
     }
 
 }
