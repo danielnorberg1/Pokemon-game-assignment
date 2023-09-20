@@ -20,7 +20,4 @@ public class Skill {
     public String toString(){
         return name + " - AP: " + skillAttackPower + " EC: " + skillEnergyCost;
     }
-
-
-
 }
