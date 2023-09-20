@@ -25,8 +25,14 @@ public class Pokemon {
 
     }
 
+
     public void changeName(String newName) {
         this.name = newName;
+    }
+
+
+    public boolean knowsSkill(){ 
+        return skill != null;
     }
 
     public String toString() {
@@ -79,7 +85,9 @@ public class Pokemon {
             ep = 100;
         }
     }
-}
+    }
+
+   
 }
 
     // public void attac(Pokemon target

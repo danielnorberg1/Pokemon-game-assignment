@@ -1,4 +1,4 @@
-package pokemontest;
+package pokemontest
 
 import assignment2.Pokemon;
 import org.junit.jupiter.api.Test;
