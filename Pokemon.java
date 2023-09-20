@@ -16,12 +16,12 @@ public class Pokemon {
     private PokemonType type;
     private ItemBag itemBag;
 
-    public Pokemon(String name, int maxHealth, PokemonType type) {
+    public Pokemon(String name, int maxHealth, String type) {
         this.name = name;
         this.maxHP = maxHealth;
         this.hp = maxHealth;
         this.ep = 100;
-        this.type = type;
+        this.type = type.typeConvert(type);
         this.skill = null;
         
       

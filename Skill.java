@@ -14,7 +14,7 @@ public class Skill {
     }
     public int getSkillEnergyCost(){
         return this.skillEnergyCost;
-    
+    }
     public String toString(){
         return name + " - AP: " + skillAttackPower + " EC: " + skillEnergyCost;
     }
