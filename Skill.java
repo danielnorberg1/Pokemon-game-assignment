@@ -22,6 +22,8 @@ public class Skill {
         return name + " - AP: " + skillAttackPower + " EC: " + skillEnergyCost;
     }
 
+  
+
 
 
 }
