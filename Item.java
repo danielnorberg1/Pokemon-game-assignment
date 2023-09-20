@@ -1,4 +1,5 @@
 public class Item {
+<<<<<<< HEAD
 
     private String itemName;
     private int healingPower;
@@ -31,3 +32,10 @@ public class Item {
         CANTUSE (    )
 
 }
+=======
+    
+    
+
+
+}
+>>>>>>> c5e062c3d81233ee8890e3d259f11cb368a68696
