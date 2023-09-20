@@ -32,8 +32,13 @@ public class Pokemon {
         this.name = newName;
     }
 
-    public boolean knowSkill() {
-        return skill != null;
+    public void knowSkill() {
+        if (skill != null){
+            System.out.println(name + " (" + type + "). Knows " + skill + " - AP: " + skillAttackPower + " EC: " + skillEnergyCost);
+        }
+        else {
+            System.out.println("No skill learned: " + name + " (" + type + ") ");
+        }
     }
 
     public void learnSkill(Skill skillName, int skillAttackPower, int skillEnergyCost) {
