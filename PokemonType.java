@@ -1,25 +1,19 @@
 public class PokemonType {
 
-    public enum Type {
-        WATER,
-        FIRE,
-        GRASS,
-        NORMAL,
-    }
-    public Type typeConvert(String typeString){
+    public EnumType typeConvert(String typeString){
         typeString.trim();
-        Type type;
+        EnumType type;
         if (typeString.equalsIgnoreCase("fire")){
-            type = Type.FIRE;
+            type = EnumType.FIRE;
         }
-        else if (typeString.equalsIgnoreCase("Water")){
-            type = Type.WATER;
+        else if (typeString.equalsIgnoreCase("water")){
+            type = EnumType.WATER;
         }
-        else if (typeString.equalsIgnoreCase("Grass")){
-            type = Type.GRASS;
+        else if (typeString.equalsIgnoreCase("grass")){
+            type = EnumType.GRASS;
         }
-        else if (typeString.equalsIgnoreCase("Normal")){
-            type = Type.NORMAL;
+        else if (typeString.equalsIgnoreCase("normal")){
+            type = EnumType.NORMAL;
         }
         else {
             type = null;
