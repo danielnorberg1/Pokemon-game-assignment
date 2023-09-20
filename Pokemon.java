@@ -76,12 +76,11 @@ public class Pokemon {
 
     // public void attac(Pokemon target)
 
-    public void printPokemonStats() {
+    public void printPokemonStats(Skill skill) {
         if (skill == null) {
             System.out.println(name + " (" + type + ") ");
         } else {
-            System.out.println(name + " (" + type + "). Knows " + skill + " - AP: " + skillAttackPower + " EC: " + " EC: "
-                    + skillEnergyCost);
+            System.out.println(name + " (" + type + "). Knows " + skill.skillAttackPower + " - AP: " +  + " EC: " + skill.skillEnergyCost);
         }
     }
 }
