@@ -1,7 +1,10 @@
 public class Pokemon {
 
 
-   
+    private final String SKILL_FIRE_BLAST = "Fire Blast";
+    private final String SKILL_WATER_GUN = "Water Gun";
+    private final String SKILL_SOLAR_BEAM = "Solar Beam";
+    private final String SKILL_TACKLE = "Tackle";
 
     // EP is short for Energy Points
     // AP is short for Attack Power
@@ -10,29 +13,22 @@ public class Pokemon {
     private int hp;
     private int ep;
     private Skill skill;
-    private PokemonType type;
+    private PokemonType.EnumType type;
     private ItemBag itemBag;
+    
+    PokemonType pokemonType = new PokemonType();
 
     public Pokemon(String name, int maxHealth, String type) {
         this.name = name;
         this.maxHP = maxHealth;
         this.hp = maxHealth;
         this.ep = 100;
-        this.type = type.typeConvert(type);
+        this.type = pokemonType.typeConvert(type);
         this.skill = null;
-        
-      
-
     }
-
 
     public void changeName(String newName) {
         this.name = newName;
-    }
-
-
-    public boolean knowsSkill(){ 
-        return skill != null;
     }
 
     public String toString() {
@@ -85,9 +81,7 @@ public class Pokemon {
             ep = 100;
         }
     }
-    }
-
-   
+}
 }
 
     // public void attac(Pokemon target

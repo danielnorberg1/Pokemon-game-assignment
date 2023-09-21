@@ -1,5 +1,4 @@
 public class Item {
-<<<<<<< HEAD
 
     private String itemName;
     private int healingPower;
@@ -29,13 +28,6 @@ public class Item {
     enum HealingResult {
         FULL_HP ("%s could not use %s. HP is already full.");
         HEAL_AMOUNT (   )
-        CANTUSE (    )
+        CANT_USE (    )
 
 }
-=======
-    
-    
-
-
-}
->>>>>>> c5e062c3d81233ee8890e3d259f11cb368a68696
