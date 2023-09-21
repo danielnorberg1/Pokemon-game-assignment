@@ -1,19 +1,39 @@
  package assignment2;
 public class PokemonType {
-
-    public enum EnumType {
-        WATER,
-        FIRE,
-        GRASS,
-        NORMAL,
-    }
     
+    private EnumType enumType;
+
+    public PokemonType(String typeString){
+        switch (typeString.trim().toUpperCase()) {
+            case "FIRE":
+                this.enumType = EnumType.Fire;
+                break;
+            case "WATER":
+                this.enumType = EnumType.Water;
+                break;
+            case "GRASS":
+                this.enumType = EnumType.Grass;
+                break;
+            case "NORMAL":
+                this.enumType = EnumType.Normal;
+                break;
+            default:
+                this.enumType = null;
+    }
+}
+    public EnumType getEnumType(){
+        return enumType;
+    }
+    public String toString(){
+        return "" + enumType;
+    }
+    /* 
     public EnumType typeConvert(String typeString){
         typeString = typeString.trim().toUpperCase();
         
         switch (typeString) {
             case "FIRE":
-                return EnumType.FIRE;
+                return EnumType.Fire;
             case "WATER":
                 return EnumType.WATER;
             case "GRASS":
@@ -23,6 +43,8 @@ public class PokemonType {
             default:
                 return null;
         }
+
+        */
         /* 
         if (typeString.equalsIgnoreCase("fire")){
             type = enumType.FIRE;
@@ -43,4 +65,3 @@ public class PokemonType {
         return type;
         */
     }
-}

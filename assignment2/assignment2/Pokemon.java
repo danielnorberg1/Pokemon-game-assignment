@@ -1,10 +1,4 @@
-
-
-    private final String SKILL_FIRE_BLAST = "Fire Blast";
-    private final String SKILL_WATER_GUN = "Water Gun";
-    private final String SKILL_SOLAR_BEAM = "Solar Beam";
-    private final String SKILL_TACKLE = "Tackle";
- package assignment2;
+package assignment2;
  
  public class Pokemon {
 
@@ -15,11 +9,8 @@
     private int hp;
     private int ep;
     private Skill skill;
-    private PokemonType.EnumType type;
+    private EnumType type;
     private ItemBag itemBag;
-    
-    PokemonType pokemonType = new PokemonType();
-    private String type;
 
 
     public Pokemon(String name, int maxHealth, String type) {
@@ -27,17 +18,14 @@
         this.maxHealth = maxHealth;
         this.hp = maxHealth;
         this.ep = 100;
-        this.type = pokemonType.typeConvert(type);
+        PokemonType pokemonType = new PokemonType(type);
+        this.type = pokemonType.getEnumType();
         this.skill = null;
     }
 
     public void changeName(String newName) {
         this.name = newName;
-        this.type = type;/*typeConvert(type);*/
-        this.skill = null;
     }
-
-  
 
     public int getEnergy(){
         return ep;
@@ -52,7 +40,7 @@
     }
 
     public String getType(){
-        return type;
+        return type.toString();
     }
 
 
@@ -71,29 +59,15 @@
     return maxHealth;
     }
 
-    
+     
 
 
 
 
+// Up above is task 1
 
 
 
-
-
-    // ONLY MOVED IT A COUPLE STEPS DOWN TO TRY //DANIEL <3
-  
-
-    public String toString() {
-        String pokemon;
-        if (skill != null){
-            pokemon = (name + " (" + type + "). Knows " + skill + " - AP: " + skill.getSkillAttackPower() + " EC: " + skill.getSkillEnergyCost());
-        }
-        else {
-            pokemon = ("No skill learned: " + name + " (" + type + ") ");
-        }
-        return pokemon;
-    }
 
     public boolean knowsSkill(){ 
         return skill != null;
@@ -135,8 +109,9 @@
             ep = 100;
         }
     }
-}
     }
+    
+    
       public void receiveDamage(int damage) {
         hp -= damage;
         if (hp < 0) {
