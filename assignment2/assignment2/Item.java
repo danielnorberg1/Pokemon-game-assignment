@@ -1,3 +1,4 @@
+ package assignment2;
 public class Item {
 
     private String itemName;
@@ -25,9 +26,9 @@ public class Item {
 
     }
 
-    enum HealingResult {
+   /*  enum HealingResult {
         FULL_HP ("%s could not use %s. HP is already full.");
         HEAL_AMOUNT (   )
-        CANT_USE (    )
+        CANTUSE (    ) */
 
 }
