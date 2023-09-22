@@ -47,7 +47,7 @@ package assignment2;
     public String toString() {
     String pokemon; 
     if (skill != null){
-    pokemon = (name + " (" + type.toString() + "). Knows " + skill + " - AP: " + skill.getSkillAttackPower() + " EC: " + skill.getSkillEnergyCost());
+    pokemon = (name + " (" + type.toString() + "). Knows " + skill.toString());
     }
     else {
     pokemon = (name + " (" + type.toString() + ")");
