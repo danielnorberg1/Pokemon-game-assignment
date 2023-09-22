@@ -60,6 +60,18 @@ package assignment2;
     }
 
      
+    public boolean equals(Object obj) {
+       
+        Pokemon otherPokemon = (Pokemon) obj; 
+        boolean equalName = this.name.equals(otherPokemon.name);
+        boolean equalMaxHealth = this.maxHealth == otherPokemon.maxHealth;
+        boolean equalHp = this.hp == otherPokemon.hp;
+        boolean equalEp = this.ep == otherPokemon.ep;
+        boolean equalType = this.type.equals(otherPokemon.type);
+    
+      
+        return equalName && equalMaxHealth && equalHp && equalEp && equalType;
+    }
 
 
 
@@ -75,7 +87,7 @@ package assignment2;
 
 
 
-    public void learnSkill(Skill skillName, int skillAttackPower, int skillEnergyCost) {
+    public void learnSkill(String name , int skillAttackPower, int skillEnergyCost) {
         this.skill = new Skill(name, skillAttackPower, skillEnergyCost);
        
     }
