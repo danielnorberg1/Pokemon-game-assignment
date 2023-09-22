@@ -12,6 +12,9 @@ package assignment2;
     private EnumType type;
     private ItemBag itemBag;
 
+    final double SUPER_EFFECTIVE = 2;
+    final double NOT_EFFECTIVE = 0.5;
+
 
     public Pokemon(String name, int maxHealth, String type) {
         this.name = name;
@@ -58,7 +61,46 @@ package assignment2;
     public int getMAX_HP(){
     return maxHealth;
     }
-
+    
+    public void attack(Pokemon pokemon){
+    if(pokemon.getCurrentHP() != 0){
+        switch (this.type){
+            case FIRE:
+                if (pokemon.type == EnumType.GRASS){
+                    pokemon.receiveDamage((int)(this.skill.getSkillAttackPower() * SUPER_EFFECTIVE));
+                } else if ((pokemon.type == EnumType.NORMAL)){
+                    pokemon.receiveDamage((int)(this.skill.getSkillAttackPower()));
+                } else {
+                    pokemon.receiveDamage((int)(this.skill.getSkillAttackPower() * NOT_EFFECTIVE));
+                }
+                break;
+            case WATER:
+                if (pokemon.type == EnumType.FIRE){
+                    pokemon.receiveDamage((int)(this.skill.getSkillAttackPower() * SUPER_EFFECTIVE));
+                } else if ((pokemon.type == EnumType.NORMAL)){
+                    pokemon.receiveDamage((int)(this.skill.getSkillAttackPower()));
+                } else {
+                    pokemon.receiveDamage((int)(this.skill.getSkillAttackPower() * NOT_EFFECTIVE));
+                }
+                break;
+            case GRASS:
+                if (pokemon.type == EnumType.WATER){
+                    pokemon.receiveDamage((int)(this.skill.getSkillAttackPower() * SUPER_EFFECTIVE));
+                } else if ((pokemon.type == EnumType.NORMAL)){
+                    pokemon.receiveDamage((int)(this.skill.getSkillAttackPower()));
+                } else {
+                    pokemon.receiveDamage((int)(this.skill.getSkillAttackPower() * NOT_EFFECTIVE));
+                }
+                break;
+            default:
+                pokemon.receiveDamage(this.skill.getSkillAttackPower());
+        }
+    this.spendEnergy(this.skill.getSkillEnergyCost());
+    }
+    else{
+        
+    }
+    }
      
 
 
@@ -75,8 +117,8 @@ package assignment2;
 
 
 
-    public void learnSkill(Skill skillName, int skillAttackPower, int skillEnergyCost) {
-        this.skill = new Skill(name, skillAttackPower, skillEnergyCost);
+    public void learnSkill(String skillName, int skillAttackPower, int skillEnergyCost) {
+        this.skill = new Skill(skillName, skillAttackPower, skillEnergyCost);
        
     }
 

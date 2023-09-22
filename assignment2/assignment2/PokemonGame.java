@@ -5,6 +5,8 @@ public class PokemonGame {
         Pokemon pokemon = new Pokemon("Erik",20, "Water");
 
         System.out.println(pokemon);
+
+
     }
 
 }
