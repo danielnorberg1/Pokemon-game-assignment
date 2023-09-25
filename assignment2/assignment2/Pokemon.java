@@ -1,5 +1,7 @@
 package assignment2;
 
+import java.nio.file.attribute.PosixFilePermission;
+
 public class Pokemon {
 
     // EP is short for Energy Points
@@ -55,6 +57,9 @@ public class Pokemon {
     public String getType(){
         return type.toString();
     }
+    public EnumType getEnumType() {
+        return type;
+    }
 
     public String toString() {
         String pokemon;
@@ -70,42 +75,40 @@ public class Pokemon {
         return maxHealth;
     }
 
-    public void attack(Pokemon pokemon) {
-        if (pokemon.getCurrentHP() != 0) {
-            switch (this.type) {
-                case FIRE:
-                    if (pokemon.type == EnumType.GRASS) {
-                        pokemon.receiveDamage((int) (this.skill.getSkillAttackPower() * SUPER_EFFECTIVE));
-                    } else if ((pokemon.type == EnumType.NORMAL)) {
-                        pokemon.receiveDamage((int) (this.skill.getSkillAttackPower()));
-                    } else {
-                        pokemon.receiveDamage((int) (this.skill.getSkillAttackPower() * NOT_EFFECTIVE));
-                    }
-                    break;
-                case WATER:
-                    if (pokemon.type == EnumType.FIRE) {
-                        pokemon.receiveDamage((int) (this.skill.getSkillAttackPower() * SUPER_EFFECTIVE));
-                    } else if ((pokemon.type == EnumType.NORMAL)) {
-                        pokemon.receiveDamage((int) (this.skill.getSkillAttackPower()));
-                    } else {
-                        pokemon.receiveDamage((int) (this.skill.getSkillAttackPower() * NOT_EFFECTIVE));
-                    }
-                    break;
-                case GRASS:
-                    if (pokemon.type == EnumType.WATER) {
-                        pokemon.receiveDamage((int) (this.skill.getSkillAttackPower() * SUPER_EFFECTIVE));
-                    } else if ((pokemon.type == EnumType.NORMAL)) {
-                        pokemon.receiveDamage((int) (this.skill.getSkillAttackPower()));
-                    } else {
-                        pokemon.receiveDamage((int) (this.skill.getSkillAttackPower() * NOT_EFFECTIVE));
-                    }
-                    break;
-                default:
-                    pokemon.receiveDamage(this.skill.getSkillAttackPower());
-            }
+    public void attack(Pokemon defender) {
+        
+        //EnumEffectiveness effectiveness = New EnumEffectiveness();
+        TypeEffectiveness typeEffectiveness = new TypeEffectiveness();
+        EnumEffectiveness effectiveness = typeEffectiveness.calcEffectiveness(this.type, defender.type);
+        if (defender.getCurrentHP() <= 0) {
+            System.out.printf("Attack failed. %s fainted.", defender.name);
+        } else if ((this.getCurrentHP() <= 0)){
+            System.out.printf("Attack failed. %s fainted.", this.name);
+        } else if(this.knowsSkill() == false){
+            System.out.printf("Attack failed. %s does not know a skill.", this.name);
+        } else if(this.getEnergy() < this.skill.getSkillEnergyCost()){
+            System.out.printf("Attack failed. %s lacks energy: %d/%d", this.name, this.getEnergy(), this.skill.getSkillEnergyCost());
+        }
+        else{
             this.spendEnergy(this.skill.getSkillEnergyCost());
-        } else {
+            System.out.printf("%s uses %s on %s.",this.name, this.skill.getName(), defender.getName());
 
+            switch (effectiveness){
+                case SUPEREFFECTIVE:
+                    defender.receiveDamage((int)(this.skill.getSkillAttackPower()*SUPER_EFFECTIVE));
+                    System.out.print("It is super effective!");
+                    break;
+                case NOTEFFECTIVE:
+                    defender.receiveDamage((int)(this.skill.getSkillAttackPower()*NOT_EFFECTIVE));
+                    System.out.print("It is not very effective...");
+                default:
+                    defender.receiveDamage((int)(this.skill.getSkillAttackPower()));
+            }
+            System.out.printf("\n%s has %d HP left.", defender.name, defender.getCurrentHP());
+            if (defender.getCurrentHP() <= 0){
+                System.out.printf("%s faints.", defender.name);
+            }
+            
         }
     }
 
