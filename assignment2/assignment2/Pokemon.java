@@ -12,6 +12,7 @@ package assignment2;
     private EnumType type;
     private ItemBag itemBag;
 
+
     final double SUPER_EFFECTIVE = 2;
     final double NOT_EFFECTIVE = 0.5;
 
@@ -41,6 +42,16 @@ package assignment2;
     public String getName(){
         return name;
     }
+
+    public void setCurrentHP(int updatedHP) {
+        this.hp = updatedHP;
+    }
+
+    public void setMaxHealth(int maxHealth) {
+        this.maxHealth = maxHealth;
+    }
+    
+
 
     public String getType(){
         return type.toString();
@@ -172,8 +183,40 @@ package assignment2;
             hp = 0;
         }
     }
+    
+    
+
 
    
-}
+    public void useItem(Item item) {
+        int newHP = getCurrentHP() + item.getHealingPower();
+    
+        if (newHP > getMAX_HP()) {
+            setCurrentHP(getMAX_HP());
+            System.out.printf("%s could not use %s. HP is already full.%n", this.name, item.getItemName());
+        } else {
+            setCurrentHP(newHP);
+            if (newHP == getMAX_HP()) {
+                System.out.printf("%s used %s. It healed %d HP.%n", this.name, item.getItemName(), getMAX_HP() - getCurrentHP());
+            } else {
+                System.out.printf("%s used %s. It healed %d HP.%n", this.name, item.getItemName(), item.getHealingPower());
+            }
+        }
+    }
+    
+
+       // System.out.printf("%s used %s. It healed %d HP",this.name, item.getHealingPower());
+    //}else {
+        //System.out.printf("%s could not use %s. HP is already full.",this.name, item.getItemName());
+
+    }
+
+
+
+
+
+
+
+   
 
     // public void attac(Pokemon target
