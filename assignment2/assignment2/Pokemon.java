@@ -44,7 +44,7 @@ public class Pokemon {
         return name;
     }
 
-    public void setCurrentHP(int updatedHP) {
+public void setCurrentHP(int updatedHP) {
         this.hp = updatedHP;
     }
 
@@ -57,7 +57,7 @@ public class Pokemon {
     public String getType(){
         return type.toString();
     }
-    public EnumType getEnumType() {
+public EnumType getEnumType() {
         return type;
     }
 
@@ -82,14 +82,14 @@ public class Pokemon {
         EnumEffectiveness effectiveness = typeEffectiveness.calcEffectiveness(this.type, defender.type);
         if (defender.getCurrentHP() <= 0) {
             System.out.printf("Attack failed. %s fainted.", defender.name);
-        } else if ((this.getCurrentHP() <= 0)){
+                    } else if ((this.getCurrentHP() <= 0)){
             System.out.printf("Attack failed. %s fainted.", this.name);
-        } else if(this.knowsSkill() == false){
+                    } else if(this.knowsSkill() == false){
             System.out.printf("Attack failed. %s does not know a skill.", this.name);
-        } else if(this.getEnergy() < this.skill.getSkillEnergyCost()){
+                    } else if(this.getEnergy() < this.skill.getSkillEnergyCost()){
             System.out.printf("Attack failed. %s lacks energy: %d/%d", this.name, this.getEnergy(), this.skill.getSkillEnergyCost());
-        }
-        else{
+                    }
+            else{
             this.spendEnergy(this.skill.getSkillEnergyCost());
             System.out.printf("%s uses %s on %s.",this.name, this.skill.getName(), defender.getName());
 
@@ -108,7 +108,7 @@ public class Pokemon {
             if (defender.getCurrentHP() <= 0){
                 System.out.printf("%s faints.", defender.name);
             }
-            
+
         }
     }
 
@@ -174,9 +174,9 @@ public class Pokemon {
     
 
 
-   
+
     public void useItem(Item item) {
-        int newHP = getCurrentHP() + item.getHealingPower();
+                int newHP = getCurrentHP() + item.getHealingPower();
     
         if (newHP > getMAX_HP()) {
             setCurrentHP(getMAX_HP());
