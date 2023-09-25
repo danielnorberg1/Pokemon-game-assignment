@@ -5,8 +5,6 @@ public class TypeEffectiveness{
         }
 
     public EnumEffectiveness calcEffectiveness(EnumType attType, EnumType defType){
-
-
         //EnumType attType = attacker.getEnumType();
         //EnumType defType = defender.getEnumType();
         
