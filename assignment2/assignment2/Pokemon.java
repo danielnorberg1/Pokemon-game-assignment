@@ -177,15 +177,20 @@ public class Pokemon {
     
         if (newHP > getMAX_HP()) {
             setCurrentHP(getMAX_HP());
-            System.out.printf("%s could not use %s. HP is already full.%n", this.name, item.getItemName());
+            System.out.printf("%s could not use %s. HP is already full.", this.name, item.getItemName());
         } else {
             setCurrentHP(newHP);
             if (newHP == getMAX_HP()) {
-                System.out.printf("%s used %s. It healed %d HP.%n", this.name, item.getItemName(), getMAX_HP() - getCurrentHP());
+                System.out.printf("%s used %s. It healed %d HP.", this.name, item.getItemName(), getMAX_HP() - getCurrentHP());
             } else {
-                System.out.printf("%s used %s. It healed %d HP.%n", this.name, item.getItemName(), item.getHealingPower());
+                System.out.printf("%s used %s. It healed %d HP.", this.name, item.getItemName(), item.getHealingPower());
             }
         }
+    }
+
+    public boolean equals(Object objHeal){
+        
+
     }
     
 

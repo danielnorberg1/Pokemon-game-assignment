@@ -42,22 +42,31 @@ public class Item {
     public void getWeight(double newWeight){
         this.weight=newWeight;
     }
+    
 
-
+    //the Math.floor was taken from stack overflow When i wrote the code in the way i known how it resulted in
+    //4 rows of code, it is more DRY this way.
     public String toString() {
         double truncatedWeight = Math.floor(this.getWeight() * 100) / 100;
 
         return String.format("%s heals %d HP. (%.2f)", this.getItemName(), this.getHealingPower(), truncatedWeight);
     }
-    if ()
     
-    }
     
     //methods
 
     
+    public boolean equals(Object obj){
 
+        Item copyItem = (Item) obj;
+        boolean equalitemName = this.itemName.equals(copyItem.itemName);
+        boolean equalHealingPower = this.healingPower == (copyItem.healingPower);
+        boolean equalWeight = this.weight == (copyItem.weight);
 
+        return equalitemName && equalHealingPower && equalWeight;
+
+    }
+}
 
 
     

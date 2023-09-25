@@ -6,6 +6,7 @@ import java.util.List;
 public class ItemBag {
 
     private double maxWeight;
+    private double currentWeight;
     private List <Item> items;
 
     ItemBag(double maxWeight) {
