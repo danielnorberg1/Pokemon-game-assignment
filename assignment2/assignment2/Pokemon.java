@@ -44,7 +44,7 @@ public class Pokemon {
         return name;
     }
 
-public void setCurrentHP(int updatedHP) {
+    public void setCurrentHP(int updatedHP) {
         this.hp = updatedHP;
     }
 
@@ -175,33 +175,44 @@ public EnumType getEnumType() {
 
 
 
-    public void useItem(Item item) {
-                int newHP = getCurrentHP() + item.getHealingPower();
+    public String useItem(Item item) {
+        int currentHP = getCurrentHP();
+        int maxHP = getMAX_HP();
+        int newHP = getCurrentHP() + item.getHealingPower();
+                
+                
     
-        if (newHP > getMAX_HP()) {
-            setCurrentHP(getMAX_HP());
-            System.out.printf("%s could not use %s. HP is already full.", this.name, item.getItemName());
-        } else {
-            setCurrentHP(newHP);
-            if (newHP == getMAX_HP()) {
-                System.out.printf("%s used %s. It healed %d HP.", this.name, item.getItemName(), getMAX_HP() - getCurrentHP());
+        if (this.hp == maxHP) {
+           return String.format("%s could not use %s. HP is already full.", this.name, item.getItemName());
+        } 
+    
+        if (newHP >= maxHP) {
+                this.hp = maxHP;
+                return String.format("%s used %s. It healed %d HP.", this.name, item.getItemName(),maxHP - currentHP);//HealingPower = 30 -? =20
             } else {
-                System.out.printf("%s used %s. It healed %d HP.", this.name, item.getItemName(), item.getHealingPower());
+                this.hp = newHP;
+                return String.format("%s used %s. It healed %d HP.", this.name, item.getItemName(), item.getHealingPower());
+            }
+
             }
         }
-    }
+// healing power = 30 should be 20
+//current hp + healing power = 30+30 = 60
+//maxhp + healing power = 50+30 = 80
+//
 
-    public boolean equals(Object objHeal){
-        
 
-    }
+    //public boolean equals(Object objHeal){
+   
+
+
     
 
        // System.out.printf("%s used %s. It healed %d HP",this.name, item.getHealingPower());
     //}else {
         //System.out.printf("%s could not use %s. HP is already full.",this.name, item.getItemName());
 
-    }
+    
 
 
 
