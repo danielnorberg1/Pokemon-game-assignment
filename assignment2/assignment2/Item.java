@@ -58,6 +58,11 @@ public class Item {
     
     public boolean equals(Object obj){
 
+        if (this == obj)
+        return true;
+
+        //if ()
+
         Item copyItem = (Item) obj;
         boolean equalitemName = this.itemName.equals(copyItem.itemName);
         boolean equalHealingPower = this.healingPower == (copyItem.healingPower);

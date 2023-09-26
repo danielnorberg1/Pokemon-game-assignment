@@ -1,5 +1,5 @@
 package assignment2;
-public enum EnumType {
+public enum EnumTypeOLD {
     WATER("Water"),
     FIRE("Fire"),
     GRASS("Grass"),
@@ -7,7 +7,7 @@ public enum EnumType {
 
     final String TYPE;
 
-    EnumType(String typeString){
+    EnumTypeOLD(String typeString){
     this.TYPE = typeString;
     }
 
