@@ -1,4 +1,4 @@
-package assignment2;
+// Old code before task 8
 public enum EnumTypeOLD {
     WATER("Water"),
     FIRE("Fire"),

@@ -33,16 +33,15 @@ public class ItemBag {
         return maxWeight;
     }
 
-
+    
     //Methods
 
     public double addItem(Item item){
         int index = 0;
-        if ((getCurrentWeight() + item.getWeight() > this.maxWeight) || (index == 0)) {
-            return -1  ;
-        } 
-
-            
+        if ((getCurrentWeight() + item.getWeight() > this.maxWeight)) {
+            return -1;
+        }  
+   
             while (index < itemsInBag.size() && item.getWeight() < itemsInBag.get(index).getWeight()) {
                 index++;
             }
@@ -57,6 +56,7 @@ public class ItemBag {
         if(index < 0 || index >= itemsInBag.size()) {
             return null;
         }
+        currentWeight -= itemsInBag.get(index).getWeight();
         return itemsInBag.remove(index);
     }
 
@@ -70,16 +70,9 @@ public class ItemBag {
 
     public Item popItem() {
         if (!itemsInBag.isEmpty()) {
+            currentWeight -= itemsInBag.get(0).getWeight();
             return itemsInBag.remove(0);
         }
         return null;
     }
 }
-
-
-
-
-/* assertEquals(0, itemBag.getNumOfItems());
-        assertEquals(0.0, itemBag.getCurrentWeight());
-        assertEquals(30.0, itemBag.getMaxWeight());
- */

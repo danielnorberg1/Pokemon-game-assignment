@@ -1,39 +1,75 @@
 package assignment2;
-public class TypeEffectiveness{
-    public TypeEffectiveness(){
-            
-        }
 
-    public EnumEffectiveness calcEffectiveness(EnumType attType, EnumType defType){
-        
+public class TypeEffectiveness {
+    public TypeEffectiveness() {
+
+    }
+
+    public EnumEffectiveness calcEffectiveness(EnumType attType, EnumType defType) {
+
         switch (attType) {
-            case FIRE:
-                switch (defType){
+            case BUG:
+                switch (defType) {
                     case GRASS:
                         return EnumEffectiveness.SUPEREFFECTIVE;
-                    case NORMAL: 
-                        return EnumEffectiveness.NORMALEFFECTIVE;
-                    default:
-                        return EnumEffectiveness.NOTEFFECTIVE;
-                }
-            case WATER:
-                switch (defType){
                     case FIRE:
-                        return EnumEffectiveness.SUPEREFFECTIVE;
-                    case NORMAL: 
-                        return EnumEffectiveness.NORMALEFFECTIVE;
-                    default:
                         return EnumEffectiveness.NOTEFFECTIVE;
+                    default:
+                        return EnumEffectiveness.NORMALEFFECTIVE;
                 }
-            case GRASS:
-                switch (defType){
+            case DRAGON:
+                switch (defType) {
+                    case DRAGON:
+                        return EnumEffectiveness.SUPEREFFECTIVE;
+                    default:
+                        return EnumEffectiveness.NORMALEFFECTIVE;
+                }
+            case ELECTRIC:
+                switch (defType) {
                     case WATER:
                         return EnumEffectiveness.SUPEREFFECTIVE;
-                    case NORMAL: 
-                        return EnumEffectiveness.NORMALEFFECTIVE;
-                    default:
+                    case DRAGON, ELECTRIC, GRASS:
                         return EnumEffectiveness.NOTEFFECTIVE;
+                    default:
+                        return EnumEffectiveness.NORMALEFFECTIVE;
                 }
+            case FIRE:
+                switch (defType) {
+                    case GRASS, BUG, ICE:
+                        return EnumEffectiveness.SUPEREFFECTIVE;
+                    case WATER, FIRE, DRAGON:
+                        return EnumEffectiveness.NOTEFFECTIVE;
+                    default:
+                        return EnumEffectiveness.NORMALEFFECTIVE;
+                }
+            case GRASS:
+                switch (defType) {
+                    case WATER:
+                        return EnumEffectiveness.SUPEREFFECTIVE;
+                    case BUG, DRAGON, FIRE, GRASS:
+                        return EnumEffectiveness.NOTEFFECTIVE;
+                    default:
+                        return EnumEffectiveness.NORMALEFFECTIVE;
+                }
+            case ICE:
+                switch (defType) {
+                    case DRAGON, GRASS:
+                        return EnumEffectiveness.SUPEREFFECTIVE;
+                    case FIRE, ICE, WATER:
+                        return EnumEffectiveness.NOTEFFECTIVE;
+                    default:
+                        return EnumEffectiveness.NORMALEFFECTIVE;
+                }
+            case WATER:
+                switch (defType) {
+                    case FIRE:
+                        return EnumEffectiveness.SUPEREFFECTIVE;
+                    case DRAGON, GRASS, WATER:
+                        return EnumEffectiveness.NOTEFFECTIVE;
+                    default:
+                        return EnumEffectiveness.NORMALEFFECTIVE;
+                }
+
             default:
                 return EnumEffectiveness.NORMALEFFECTIVE;
         }

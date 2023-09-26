@@ -4,7 +4,4 @@ public enum EnumEffectiveness {
     SUPEREFFECTIVE,
     NOTEFFECTIVE,
     NORMALEFFECTIVE;
-    
 }
-
-
