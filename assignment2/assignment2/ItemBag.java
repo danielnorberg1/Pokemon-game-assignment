@@ -19,6 +19,4 @@ public class ItemBag {
         public double getMaxWeight() {
             return maxWeight;
     }
-
-
 }
