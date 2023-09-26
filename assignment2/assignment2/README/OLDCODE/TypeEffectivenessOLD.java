@@ -1,6 +1,6 @@
 package assignment2;
-public class TypeEffectiveness{
-    public TypeEffectiveness(){
+public class TypeEffectivenessOLD{
+    public TypeEffectivenessOLD(){
             
         }
 

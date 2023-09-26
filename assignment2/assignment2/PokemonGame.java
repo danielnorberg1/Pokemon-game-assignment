@@ -12,8 +12,10 @@ public class PokemonGame {
 
         Erik.learnSkill("Dansa", 30, 10);
 
-        porygon.attack(wigglytuff);
-        porygon.attack(wigglytuff);
+        System.out.print(porygon.attack(wigglytuff));
+        System.out.print(porygon.attack(wigglytuff));
+        System.out.print(porygon.attack(wigglytuff));
+
 
     }
 
