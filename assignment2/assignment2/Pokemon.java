@@ -30,25 +30,11 @@ public class Pokemon {
         this.name = newName;
     }
 
-    public int getEnergy() {
-        return ep;
-    }
-
-    public int getCurrentHP() {
-        return hp;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getType() {
-        return type.toString();
-    }
-
-    public EnumType getEnumType() {
-        return type;
-    }
+    public int getEnergy() { return ep; }
+    public int getCurrentHP() { return hp; }
+    public String getName() { return name; }
+    public String getType() { return type.toString(); }
+    public EnumType getEnumType() { return type; }
 
     public String toString() {
         String pokemon;
