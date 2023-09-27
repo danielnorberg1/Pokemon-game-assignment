@@ -120,8 +120,10 @@ public class Pokemon {
         boolean equalHp = this.hp == otherPokemon.hp;
         boolean equalEp = this.ep == otherPokemon.ep;
         boolean equalType = this.type.equals(otherPokemon.type);
+        boolean equalSkill = this.skill == otherPokemon.skill;
 
-        return equalName && equalMaxHealth && equalHp && equalEp && equalType;
+
+        return equalName && equalMaxHealth && equalHp && equalEp && equalType && equalSkill;
     }
 
     // Up above is task 1

@@ -12,6 +12,23 @@ public class Skill {
         this.skillEnergyCost = skillEnergyCost;
     }
 
+    public boolean equal(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+
+        Skill otherSkill = (Skill) obj;
+        boolean equalName = this.name.equals(otherSkill.name);
+        boolean equalSkillAttackPower = this.skillAttackPower == otherSkill.skillAttackPower;
+        boolean equalSkillEnergyCost = this.skillEnergyCost == otherSkill.skillEnergyCost;
+
+        return equalName && equalSkillAttackPower && equalSkillEnergyCost;
+
+    }
+
     public String getName() {
         return this.name;
     }
