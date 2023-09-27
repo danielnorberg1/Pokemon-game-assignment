@@ -1,10 +1,11 @@
- package assignment2;
+package assignment2;
+
 public class PokemonType {
-    
+
     private EnumType enumType;
 
-    public PokemonType(String typeString){
-        switch (typeString.trim().toUpperCase()) {
+    public PokemonType(String typeString) {
+        switch (typeString.trim().toUpperCase()) {      
             case "FIRE":
                 this.enumType = EnumType.FIRE;
                 break;
@@ -17,52 +18,31 @@ public class PokemonType {
             case "NORMAL":
                 this.enumType = EnumType.NORMAL;
                 break;
+            case "ICE":
+                this.enumType = EnumType.ICE;
+                break;
+            case "BUG":
+                this.enumType = EnumType.BUG;
+                break;
+            case "DRAGON":
+                this.enumType = EnumType.DRAGON;
+                break;
+            case "ELECTRIC":
+                this.enumType = EnumType.ELECTRIC;
+                break;
+
             default:
                 this.enumType = null;
+
+        }
     }
-}
-    public EnumType getEnumType(){
+
+    public EnumType getEnumType() {
         return enumType;
     }
-    public String toString(){
-        return "" + enumType;
-    }
-/* 
-    public static EnumEffectiveness calcEffectiveness(EnumType attType, EnumType defType){
 
-        //EnumType attType = attacker.getEnumType();
-        //EnumType defType = defender.getEnumType();
-        
-        switch (attType) {
-            case FIRE:
-                switch (defType){
-                    case GRASS:
-                        return EnumEffectiveness.SUPEREFFECTIVE;
-                    case NORMAL: 
-                        return EnumEffectiveness.NORMALEFFECTIVE;
-                    default:
-                        return EnumEffectiveness.NOTEFFECTIVE;
-                }
-            case WATER:
-                switch (defType){
-                    case FIRE:
-                        return EnumEffectiveness.SUPEREFFECTIVE;
-                    case NORMAL: 
-                        return EnumEffectiveness.NORMALEFFECTIVE;
-                    default:
-                        return EnumEffectiveness.NOTEFFECTIVE;
-                }
-            case GRASS:
-                switch (defType){
-                    case WATER:
-                        return EnumEffectiveness.SUPEREFFECTIVE;
-                    case NORMAL: 
-                        return EnumEffectiveness.NORMALEFFECTIVE;
-                    default:
-                        return EnumEffectiveness.NOTEFFECTIVE;
-                }
-            default:
-                return EnumEffectiveness.NORMALEFFECTIVE;
-        }
-    }*/
+    public String toString() {
+        return enumType.toString();
+    }
+
 }

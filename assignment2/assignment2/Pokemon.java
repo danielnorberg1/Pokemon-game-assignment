@@ -1,7 +1,5 @@
 package assignment2;
 
-import java.nio.file.attribute.PosixFilePermission;
-
 public class Pokemon {
 
     // EP is short for Energy Points
@@ -14,7 +12,7 @@ public class Pokemon {
     private EnumType type;
     private ItemBag itemBag;
 
-
+    final int maxEP = 100;
     final double SUPER_EFFECTIVE = 2;
     final double NOT_EFFECTIVE = 0.5;
 
@@ -44,20 +42,11 @@ public class Pokemon {
         return name;
     }
 
-public void setCurrentHP(int updatedHP) {
-        this.hp = updatedHP;
-    }
-
-    public void setMaxHealth(int maxHealth) {
-        this.maxHealth = maxHealth;
-    }
-    
-
-
-    public String getType(){
+    public String getType() {
         return type.toString();
     }
-public EnumType getEnumType() {
+
+    public EnumType getEnumType() {
         return type;
     }
 
@@ -75,46 +64,57 @@ public EnumType getEnumType() {
         return maxHealth;
     }
 
-    public void attack(Pokemon defender) {
-        
-        //EnumEffectiveness effectiveness = New EnumEffectiveness();
-        TypeEffectiveness typeEffectiveness = new TypeEffectiveness();
-        EnumEffectiveness effectiveness = typeEffectiveness.calcEffectiveness(this.type, defender.type);
-        if (defender.getCurrentHP() <= 0) {
-            System.out.printf("Attack failed. %s fainted.", defender.name);
-                    } else if ((this.getCurrentHP() <= 0)){
-            System.out.printf("Attack failed. %s fainted.", this.name);
-                    } else if(this.knowsSkill() == false){
-            System.out.printf("Attack failed. %s does not know a skill.", this.name);
-                    } else if(this.getEnergy() < this.skill.getSkillEnergyCost()){
-            System.out.printf("Attack failed. %s lacks energy: %d/%d", this.name, this.getEnergy(), this.skill.getSkillEnergyCost());
-                    }
-            else{
-            this.spendEnergy(this.skill.getSkillEnergyCost());
-            System.out.printf("%s uses %s on %s.",this.name, this.skill.getName(), defender.getName());
+    public String attack(Pokemon defender) {
 
-            switch (effectiveness){
+        String message = "";
+        // Here is when attacks are "failing"
+        if (defender.getCurrentHP() <= 0) {
+            message = String.format("Attack failed. %s fainted.", defender.name);
+        } else if ((this.getCurrentHP() <= 0)) {
+            message = String.format("Attack failed. %s fainted.", this.name);
+        } else if (this.knowsSkill() == false) {
+            message = String.format("Attack failed. %s does not know a skill.", this.name);
+        } else if (this.getEnergy() < this.skill.getSkillEnergyCost()) {
+            message = String.format("Attack failed. %s lacks energy: %d/%d", this.name, this.getEnergy(),
+                    this.skill.getSkillEnergyCost());
+        } else {
+            TypeEffectiveness typeEffectiveness = new TypeEffectiveness();
+            EnumEffectiveness effectiveness = typeEffectiveness.calcEffectiveness(this.type, defender.type);
+            // Here is when the pokemons succed with their attacks
+            this.spendEnergy(this.skill.getSkillEnergyCost());
+            message = String.format("%s uses %s on %s.", this.name, this.skill.getName(), defender.getName());
+
+            switch (effectiveness) {
                 case SUPEREFFECTIVE:
-                    defender.receiveDamage((int)(this.skill.getSkillAttackPower()*SUPER_EFFECTIVE));
-                    System.out.print("It is super effective!");
+                    defender.receiveDamage((int) (this.skill.getSkillAttackPower() * SUPER_EFFECTIVE));
+                    message += (" It is super effective!");
                     break;
                 case NOTEFFECTIVE:
-                    defender.receiveDamage((int)(this.skill.getSkillAttackPower()*NOT_EFFECTIVE));
-                    System.out.print("It is not very effective...");
+                    defender.receiveDamage((int) (this.skill.getSkillAttackPower() * NOT_EFFECTIVE));
+                    message += (" It is not very effective...");
+                    break;
                 default:
-                    defender.receiveDamage((int)(this.skill.getSkillAttackPower()));
+                    defender.receiveDamage(this.skill.getSkillAttackPower());
             }
-            System.out.printf("\n%s has %d HP left.", defender.name, defender.getCurrentHP());
-            if (defender.getCurrentHP() <= 0){
-                System.out.printf("%s faints.", defender.name);
+            message += String.format("\n%s has %d HP left.", defender.name, defender.getCurrentHP());
+            if (defender.getCurrentHP() <= 0) {
+                message += String.format(" %s faints.", defender.name);
             }
 
         }
+        return message;
     }
 
-    public boolean equals(Object obj) {
+    public boolean equals(Object otherObject) {
 
-        Pokemon otherPokemon = (Pokemon) obj;
+        if (this == otherObject) {
+            return true;
+        }
+        if (otherObject == null) {
+            return false;
+        }
+
+        Pokemon otherPokemon = (Pokemon) otherObject;
         boolean equalName = this.name.equals(otherPokemon.name);
         boolean equalMaxHealth = this.maxHealth == otherPokemon.maxHealth;
         boolean equalHp = this.hp == otherPokemon.hp;
@@ -132,7 +132,6 @@ public EnumType getEnumType() {
 
     public void learnSkill(String skillName, int skillAttackPower, int skillEnergyCost) {
         this.skill = new Skill(skillName, skillAttackPower, skillEnergyCost);
-
     }
 
     public void forgetSkill() {
@@ -158,8 +157,8 @@ public EnumType getEnumType() {
     public void recoverEnergy() {
         if (ep > 0) {
             ep += 25;
-            if (ep > 100) {
-                ep = 100;
+            if (ep > maxEP) {
+                ep = maxEP;
             }
         }
     }
@@ -170,45 +169,24 @@ public EnumType getEnumType() {
             hp = 0;
         }
     }
-    
-    
 
+    public String useItem(Item item) {
+        int currentHP = getCurrentHP();
+        int maxHP = getMAX_HP();
+        int newHP = getCurrentHP() + item.getHealingPower();
 
-
-    public void useItem(Item item) {
-                int newHP = getCurrentHP() + item.getHealingPower();
-    
-        if (newHP > getMAX_HP()) {
-            setCurrentHP(getMAX_HP());
-            System.out.printf("%s could not use %s. HP is already full.", this.name, item.getItemName());
-        } else {
-            setCurrentHP(newHP);
-            if (newHP == getMAX_HP()) {
-                System.out.printf("%s used %s. It healed %d HP.", this.name, item.getItemName(), getMAX_HP() - getCurrentHP());
-            } else {
-                System.out.printf("%s used %s. It healed %d HP.", this.name, item.getItemName(), item.getHealingPower());
-            }
+        if (this.hp == maxHP) {
+            return String.format("%s could not use %s. HP is already full.", this.name, item.getItemName());
         }
-    }
 
-    public boolean equals(Object objHeal){
-        
-
-    }
-    
-
-       // System.out.printf("%s used %s. It healed %d HP",this.name, item.getHealingPower());
-    //}else {
-        //System.out.printf("%s could not use %s. HP is already full.",this.name, item.getItemName());
+        if (newHP >= maxHP) {
+            this.hp = maxHP;
+            return String.format("%s used %s. It healed %d HP.", this.name, item.getItemName(), maxHP - currentHP);
+        } else {
+            this.hp = newHP;
+            return String.format("%s used %s. It healed %d HP.", this.name, item.getItemName(), item.getHealingPower());
+        }
 
     }
 
-
-
-
-
-
-
-   
-
-// public void attac(Pokemon target
+}

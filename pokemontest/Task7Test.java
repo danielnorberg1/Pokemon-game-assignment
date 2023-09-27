@@ -85,13 +85,13 @@ public class Task7Test {
         Item superPotion = new Item("Super Potion", 40, 8.0);
 
         ItemBag itemBag = new ItemBag(15.0);
-        itemBag.addItem(potion);
-        itemBag.addItem(hyperPotion);
-        assertEquals(-1, itemBag.addItem(superPotion));
+        itemBag.addItem(potion);    //5
+        itemBag.addItem(hyperPotion);  //10
+        assertEquals(-1, itemBag.addItem(superPotion)); //15
         assertEquals(15.0, itemBag.getCurrentWeight());
 
-        assertEquals(hyperPotion, itemBag.removeItemAt(0));
-        assertNull(itemBag.removeItemAt(1));
+        assertEquals(hyperPotion, itemBag.removeItemAt(0)); //5
+        assertNull(itemBag.removeItemAt(1));  //5 
         assertEquals(0, itemBag.addItem(superPotion));
         assertEquals(13.0, itemBag.getCurrentWeight());
     }

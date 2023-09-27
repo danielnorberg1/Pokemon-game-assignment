@@ -1,27 +1,28 @@
 package assignment2;
+
 public class Item {
 
-   //attributes - variabler
+    // attributes - variabler
 
     private String itemName;
     private int healingPower;
     private double weight;
 
-    //Constructor
+    // Constructor
 
-    public Item (String itemName, int healingPower, double weight) {
-    this.itemName = itemName;
-    this.healingPower = healingPower;
-    this.weight = weight;
+    public Item(String itemName, int healingPower, double weight) {
+        this.itemName = itemName;
+        this.healingPower = healingPower;
+        this.weight = weight;
     }
 
-    //getters
+    // getters
 
     public String getItemName() {
         return itemName;
     }
 
-    public int getHealingPower () {
+    public int getHealingPower() {
         return healingPower;
     }
 
@@ -29,34 +30,39 @@ public class Item {
         return weight;
     }
 
-    //setters
+    // setters
 
-    public void setItemName(String newItemName){
+    public void setItemName(String newItemName) {
         this.itemName = newItemName;
     }
 
-    public void setHealingPower(int newHealingPower){
+    public void setHealingPower(int newHealingPower) {
         this.healingPower = newHealingPower;
     }
 
-    public void getWeight(double newWeight){
-        this.weight=newWeight;
+    public void getWeight(double newWeight) {
+        this.weight = newWeight;
     }
-    
 
-    //the Math.floor was taken from stack overflow When i wrote the code in the way i known how it resulted in
-    //4 rows of code, it is more DRY this way.
+    // the Math.floor was taken from stack overflow When i wrote the code in the way
+    // i known how it resulted in
+    // 4 rows of code, it is more DRY this way.
     public String toString() {
         double truncatedWeight = Math.floor(this.getWeight() * 100) / 100;
 
         return String.format("%s heals %d HP. (%.2f)", this.getItemName(), this.getHealingPower(), truncatedWeight);
     }
-    
-    
-    //methods
 
-    
-    public boolean equals(Object obj){
+    // methods
+
+    public boolean equals(Object obj) {
+
+        if (this == obj)
+            return true;
+
+        if (obj == null) {
+            return false;
+        }
 
         Item copyItem = (Item) obj;
         boolean equalitemName = this.itemName.equals(copyItem.itemName);
@@ -67,15 +73,3 @@ public class Item {
 
     }
 }
-
-
-    
-
-
-
-
-    //enum HealingResult {
-        // Vulpix’s HP cannot go beyond 50
-    //FULL_HP ("%s could not use %s. HP is already full.",String name, String itemName);
-    //HEAL_AMOUNT ("%s used %s. It healed %d HP",String name, int healingPower);
-    //
