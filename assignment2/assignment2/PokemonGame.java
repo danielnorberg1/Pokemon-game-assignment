@@ -12,9 +12,9 @@ public class PokemonGame {
 
         Erik.learnSkill("Dansa", 30, 10);
 
-      //  System.out.print(porygon.attack(wigglytuff));
-      //  System.out.print(porygon.attack(wigglytuff));
-        // System.out.print(porygon.attack(wigglytuff));
+        System.out.print(porygon.attack(wigglytuff));
+        System.out.print(porygon.attack(wigglytuff));
+        System.out.print(porygon.attack(wigglytuff));
 
 
         Item potion = new Item("Potion", 20, 5.0);

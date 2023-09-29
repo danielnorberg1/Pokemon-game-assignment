@@ -10,7 +10,6 @@ public class Pokemon {
     private int ep;
     private Skill skill;
     private EnumType type;
-    private ItemBag itemBag;
 
     final int maxEP = 100;
     final double SUPER_EFFECTIVE = 2;
@@ -25,16 +24,41 @@ public class Pokemon {
         this.type = pokemonType.getEnumType();
         this.skill = null;
     }
+    public boolean equals(Object otherObject) {
 
-    public void changeName(String newName) {
-        this.name = newName;
+        if (this == otherObject) {
+            return true;
+        }
+        if (otherObject == null || !(otherObject instanceof Pokemon)) {
+            return false;
+        }
+
+        Pokemon otherPokemon = (Pokemon) otherObject;
+        boolean equalSkill;
+        boolean equalName = this.name.equals(otherPokemon.name);
+        boolean equalMaxHealth = this.maxHealth == otherPokemon.maxHealth;
+        boolean equalHp = this.hp == otherPokemon.hp;
+        boolean equalEp = this.ep == otherPokemon.ep;
+        boolean equalType = this.type == otherPokemon.type;
+        if ((this.skill == null) || (otherPokemon.skill == null)){
+            equalSkill = this.skill == otherPokemon.skill;
+        } else {
+            equalSkill = this.skill.equal(otherPokemon);
+        }
+
+        return equalName && equalMaxHealth && equalHp && equalEp && equalType && equalSkill;
     }
+//Here we got all the setter and getters in a "short list". 
+//To be easier to access.
+    public void setName(String newName) { this.name = newName; }
 
     public int getEnergy() { return ep; }
     public int getCurrentHP() { return hp; }
+    public int getMAX_HP() { return maxHealth; }
     public String getName() { return name; }
     public String getType() { return type.toString(); }
     public EnumType getEnumType() { return type; }
+    
 
     public String toString() {
         String pokemon;
@@ -44,10 +68,6 @@ public class Pokemon {
             pokemon = (name + " (" + type.toString() + ")");
         }
         return pokemon;
-    }
-
-    public int getMAX_HP() {
-        return maxHealth;
     }
 
     public String attack(Pokemon defender) {
@@ -66,6 +86,7 @@ public class Pokemon {
         } else {
             TypeEffectiveness typeEffectiveness = new TypeEffectiveness();
             EnumEffectiveness effectiveness = typeEffectiveness.calcEffectiveness(this.type, defender.type);
+
             // Here is when the pokemons succed with their attacks
             this.spendEnergy(this.skill.getSkillEnergyCost());
             message = String.format("%s uses %s on %s.", this.name, this.skill.getName(), defender.getName());
@@ -91,28 +112,7 @@ public class Pokemon {
         return message;
     }
 
-    public boolean equals(Object otherObject) {
-
-        if (this == otherObject) {
-            return true;
-        }
-        if (otherObject == null) {
-            return false;
-        }
-
-        Pokemon otherPokemon = (Pokemon) otherObject;
-        boolean equalName = this.name.equals(otherPokemon.name);
-        boolean equalMaxHealth = this.maxHealth == otherPokemon.maxHealth;
-        boolean equalHp = this.hp == otherPokemon.hp;
-        boolean equalEp = this.ep == otherPokemon.ep;
-        boolean equalType = this.type.equals(otherPokemon.type);
-        boolean equalSkill = this.skill == otherPokemon.skill;
-
-
-        return equalName && equalMaxHealth && equalHp && equalEp && equalType && equalSkill;
-    }
-
-    // Up above is task 1
+  
 
     public boolean knowsSkill() {
         return skill != null;
