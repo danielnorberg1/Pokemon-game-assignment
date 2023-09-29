@@ -128,4 +128,18 @@ public class TypeEffectiveness {
 
 As you can se the structure of the code and how it works was not changed.
 We had many reasons for not changing the code.
-In the initial design the class was following a modular approach for calcualating the type effectiveness
+In the initial (and used) design the code had many advantages such as:
+
+Readability: The code uses finals and enums which cleary points out, the attacking type,
+and the defending type in the switch case.
+ 
+Maintainability: The maintainability is rather easy since it would be easy to change either 
+which type is effective againt which. Since changing the value of the effectivness is stored in 
+finals you only nedd to change in one place.
+
+Expandability: Since the code is a repeating itself it would be a problem if we would have 100 more types'.
+But... since the customer did not want to have more than 8 types. We decided to use this.
+
+And yes... we were thinking about using Maps who would be good for expandability, but in 
+the end we went with the existing code since we thought as mention earlier that is is:
+Easy to read, Maintainable, and "kind of" expandable.
