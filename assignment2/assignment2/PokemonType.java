@@ -37,9 +37,7 @@ public class PokemonType {
         }
     }
 
-    public EnumType getEnumType() {
-        return enumType;
-    }
+    public EnumType getEnumType() { return enumType; }
 
     public String toString() {
         return enumType.toString();

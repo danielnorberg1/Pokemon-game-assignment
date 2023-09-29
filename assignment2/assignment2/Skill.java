@@ -13,10 +13,11 @@ public class Skill {
     }
 
     public boolean equal(Object obj) {
+        
         if (this == obj) {
             return true;
         }
-        if (obj == null) {
+        if (obj == null || !(obj instanceof Skill)) {
             return false;
         }
 
@@ -29,17 +30,9 @@ public class Skill {
 
     }
 
-    public String getName() {
-        return this.name;
-    }
-
-    public int getSkillAttackPower() {
-        return this.skillAttackPower;
-    }
-
-    public int getSkillEnergyCost() {
-        return this.skillEnergyCost;
-    }
+    public String getName() { return this.name; }
+    public int getSkillAttackPower() { return this.skillAttackPower; }
+    public int getSkillEnergyCost() { return this.skillEnergyCost; }
 
     public String toString() {
         return name + " - AP: " + skillAttackPower + " EC: " + skillEnergyCost;

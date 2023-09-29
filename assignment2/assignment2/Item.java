@@ -32,21 +32,9 @@ public class Item {
 
     // setters
 
-    public void setItemName(String newItemName) {
-        this.itemName = newItemName;
-    }
-
-    public void setHealingPower(int newHealingPower) {
-        this.healingPower = newHealingPower;
-    }
-
-    public void getWeight(double newWeight) {
-        this.weight = newWeight;
-    }
-
     // the Math.floor was taken from stack overflow When i wrote the code in the way
-    // i known how it resulted in
-    // 4 rows of code, it is more DRY this way.
+    // i known how it result
+    // 4 rows of code,
     public String toString() {
         double truncatedWeight = Math.floor(this.getWeight() * 100) / 100;
 
@@ -60,7 +48,7 @@ public class Item {
         if (this == obj)
             return true;
 
-        if (obj == null) {
+        if (obj == null  || !(obj instanceof Item)) {
             return false;
         }
 

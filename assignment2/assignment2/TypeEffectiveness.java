@@ -1,9 +1,7 @@
 package assignment2;
 
 public class TypeEffectiveness {
-    public TypeEffectiveness() {
-
-    }
+    public TypeEffectiveness() {}
 
     public EnumEffectiveness calcEffectiveness(EnumType attType, EnumType defType) {
 
