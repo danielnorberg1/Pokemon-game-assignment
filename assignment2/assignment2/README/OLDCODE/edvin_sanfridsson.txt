@@ -1,29 +1,31 @@
-// Old code before task 8
+Before we got the update from the customer for design task 8 we had already made a very efficient way to calculate the effectiveness from the type of pokemon.
+When writing the attack we wanted to make it as efficient as possible so we realized we could use enums for the diffirent scenarios since enums can store multiple values.
+
+So we had an enum class with both the string to print and the multiplier for the effectiveness. 
+
+
+public enum EnumEffectiveness {
+    SUPEREFFECTIVE(" It is super effective!", 2),
+    NOTEFFECTIVE(" It is not very effective...", 0.5),
+    NORMALEFFECTIVE("",1);
+...
+
+We also used enums for all the types: 
+
 public enum EnumTypeOLD {
     WATER("Water"),
     FIRE("Fire"),
     GRASS("Grass"),
     NORMAL("Normal");
+...
 
-    final String TYPE;
+So when we wanted to calculate the effectiveness we just had to call this method and send in the type for the attacker and deffender.
+Then it checked all the attacker scenarios and return an effectiveness enum based on the defending type. 
+Here we used the default for NOTEFFECTIVE since there was always two cases for NOTEFFECTIVE.
 
-    EnumTypeOLD(String typeString){
-    this.TYPE = typeString;
-    }
+public class TypeEffectiveness{
 
-    public String toString(){
-        return TYPE;
-    }
-
-}
-
-
-public class TypeEffectivenessOLD{
-    public TypeEffectivenessOLD(){
-            
-        }
-
-    public EnumEffectiveness calcEffectiveness(EnumType attType, EnumType defType){
+    public static EnumEffectiveness calcEffectiveness(EnumType attType, EnumType defType){
         
         switch (attType) {
             case FIRE:
@@ -35,26 +37,29 @@ public class TypeEffectivenessOLD{
                     default:
                         return EnumEffectiveness.NOTEFFECTIVE;
                 }
-            case WATER:
-                switch (defType){
-                    case FIRE:
-                        return EnumEffectiveness.SUPEREFFECTIVE;
-                    case NORMAL: 
-                        return EnumEffectiveness.NORMALEFFECTIVE;
-                    default:
-                        return EnumEffectiveness.NOTEFFECTIVE;
-                }
-            case GRASS:
-                switch (defType){
-                    case WATER:
-                        return EnumEffectiveness.SUPEREFFECTIVE;
-                    case NORMAL: 
-                        return EnumEffectiveness.NORMALEFFECTIVE;
-                    default:
-                        return EnumEffectiveness.NOTEFFECTIVE;
-                }
+            ...(All the other cases)
             default:
                 return EnumEffectiveness.NORMALEFFECTIVE;
         }
     }
 }
+
+This meant when we got the call in from the customer it was really easy to expand our code.
+All we had to do was add the new types to the EnumType.java, and add the new cases to the TypeEffectiveness.Java class. 
+Now we used NORMALEFFECTIVE as the default since most of the times this is the case. 
+
+Example for the case the pokemon attacker is attacker. 
+    case FIRE:
+        switch (defType) {
+            case GRASS, BUG, ICE:
+                return EnumEffectiveness.SUPEREFFECTIVE;
+            case WATER, FIRE, DRAGON:
+                return EnumEffectiveness.NOTEFFECTIVE;
+            default:
+                return EnumEffectiveness.NORMALEFFECTIVE;
+
+We explored ways to do it with matrixes but we decided that this would be a more understandable code. 
+Having a matrix with for all the different scenarios would be less understandable for someone else trying to understand the calculations.
+The way we had done it loked good and was effective in our oppinion. 
+
+So we where lucky in that we had made a smart and efficient way to calculate the effectiveness of an attack already so we did not have to change that much. 

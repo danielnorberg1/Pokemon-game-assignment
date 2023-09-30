@@ -1,9 +1,9 @@
 package assignment2;
 
 public class TypeEffectiveness {
-    public TypeEffectiveness() {}
+    //public TypeEffectiveness() {}
     //The class for determening the Effectivness for the different types.
-    public EnumEffectiveness calcEffectiveness(EnumType attType, EnumType defType) {
+    public static EnumEffectiveness calcEffectiveness(EnumType attType, EnumType defType) {
 
         switch (attType) {
             case BUG:

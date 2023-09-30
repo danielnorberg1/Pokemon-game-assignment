@@ -83,7 +83,7 @@ public class Pokemon {
         
         }
         
-    //ATTACK SEQUENCE ----------- ATTACK SEQUENCE ----------- ATTACK SEQUENCE ----------- ATTACK SEQUENCE ----------- ATTACK SEQUENCE ----------- 
+    //ATTACK SEQUENCE ------------------------------------------------------------------------------------------------------------------------------------------------------
 
     public String attack(Pokemon defender) {
 
@@ -106,14 +106,14 @@ public class Pokemon {
 
         } else {  //sucessfull attack
             
-            this.spendEnergy(this.skill.getSkillEnergyCost());  //spends the energy cost
+            this.spendEnergy(this.skill.getSkillEnergyCost());
 
 
             message = String.format("%s uses %s on %s.", this.name, this.skill.getName(), defender.getName()); //this always prints
 
-            CalculateDamage calculateDamage = new CalculateDamage(this, defender); //calculates the damage
-            defender.receiveDamage(calculateDamage.getTotalDamage()); // defender recieves damage
-            message += calculateDamage.getEffectString(); //prints effect message. is empty if normal. 
+            CalculateDamage calculateDamage = new CalculateDamage(this, defender);
+            defender.receiveDamage(calculateDamage.getTotalDamage());
+            message += calculateDamage.getEffectString(); //adds effect message. is empty if normal. 
     
             message += String.format("\n%s has %d HP left.", defender.name, defender.getCurrentHP()); //
 
@@ -125,7 +125,7 @@ public class Pokemon {
     }
 
   
-    //SKILLS ------- SKILLS -------- SKILLS ------- SKILLS -------- SKILLS ------- SKILLS -------- SKILLS ------- SKILLS --------
+    //SKILLS --------------------------------------------------------------------------------------------------------------------------------------------------------
     
     public boolean knowsSkill() { return skill != null; } //checks if pokemon knows a skill
 

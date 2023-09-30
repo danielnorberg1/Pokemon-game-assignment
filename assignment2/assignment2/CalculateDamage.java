@@ -11,13 +11,9 @@ public class CalculateDamage {
     public CalculateDamage(Pokemon attacker, Pokemon defender){
         this.attacker = attacker;
         this.defender = defender;
-        TypeEffectiveness typeEffectiveness = new TypeEffectiveness();
-        EnumEffectiveness effectiveness = typeEffectiveness.calcEffectiveness(this.attacker.getEnumType(), this.defender.getEnumType());
-        this.totalDamage = calcTotalDamage(effectiveness);
+        EnumEffectiveness effectiveness = TypeEffectiveness.calcEffectiveness(this.attacker.getEnumType(), this.defender.getEnumType());
+        this.totalDamage = (int)(attacker.getPokemonSkillAttackPower() * effectiveness.getDamageMultiplier());
         this.effectString = effectiveness.getEffectString();
-    }
-    public int calcTotalDamage(EnumEffectiveness effectiveness){
-        return (int)(attacker.getPokemonSkillAttackPower() * effectiveness.getDamageMultiplier());
     }
 
     public String getEffectString() {
