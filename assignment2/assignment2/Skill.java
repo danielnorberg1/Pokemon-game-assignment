@@ -1,5 +1,8 @@
 package assignment2;
 
+
+//This class is where we declare all the "skill" attributes and import "Skill".
+
 public class Skill {
 
     private String name;
@@ -12,6 +15,7 @@ public class Skill {
         this.skillEnergyCost = skillEnergyCost;
     }
 
+    //Here we are checking the equality between different skills.
     public boolean equal(Object obj) {
         
         if (this == obj) {

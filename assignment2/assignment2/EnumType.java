@@ -10,13 +10,12 @@ public enum EnumType {
     ELECTRIC("Electric"),
     BUG("Bug");
 
-    final String TYPE;
+    private final String typeString;
 
     EnumType(String typeString) {
-        this.TYPE = typeString;
+        this.typeString = typeString;
     }
 
-    public String toString() {
-        return TYPE;
-    }
+    public String getTypeString() { return typeString;}
+    
 }
