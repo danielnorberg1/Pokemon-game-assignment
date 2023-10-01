@@ -92,7 +92,7 @@ public class Pokemon {
     public String attack(Pokemon defender) {
 
         String message = "Attack failed. ";
-        // V V V V V V V V V V V V V V V V V V V V V V V V V V V - Fail scenarios
+        //------------------------------------------------------ Fail scenarios
 
             if (defender.getCurrentHP() <= minHP) { //defender is fainted
                 message = String.format("%s fainted.", defender.name);
@@ -106,9 +106,9 @@ public class Pokemon {
             else if (this.getEnergy() < this.skill.getSkillEnergyCost()) {  //does not have enough EP
                 message = String.format("%s lacks energy: %d/%d", this.name, this.getEnergy(), this.skill.getSkillEnergyCost());
 
-        //Ʌ Ʌ Ʌ Ʌ Ʌ Ʌ Ʌ Ʌ Ʌ Ʌ Ʌ Ʌ Ʌ Ʌ Ʌ Ʌ Ʌ Ʌ Ʌ Ʌ Ʌ Ʌ Ʌ Ʌ Ʌ Ʌ Ʌ - Fail scenarios
 
-        } else {  //sucessfull attack
+        //---------------------------------------------------sucessfull attack        
+        } else {  
             
             this.spendEnergy(this.skill.getSkillEnergyCost());
 
