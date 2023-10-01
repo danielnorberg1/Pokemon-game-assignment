@@ -1,15 +1,15 @@
 package assignment2;
 
 public class TypeEffectiveness {
-    public TypeEffectiveness() {}
-
-    public EnumEffectiveness calcEffectiveness(EnumType attType, EnumType defType) {
+    //public TypeEffectiveness() {}
+    //The class for determening the Effectivness for the different types.
+    public static EnumEffectiveness calcEffectiveness(EnumType attType, EnumType defType) {
 
         switch (attType) {
             case BUG:
                 switch (defType) {
                     case GRASS:
-                        return EnumEffectiveness.SUPEREFFECTIVE;
+                        return EnumEffectiveness.SUPEREFFECTIVE; // For example here we are the enum grass Suppereffective to enum bug.
                     case FIRE:
                         return EnumEffectiveness.NOTEFFECTIVE;
                     default:

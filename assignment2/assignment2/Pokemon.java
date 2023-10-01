@@ -2,28 +2,39 @@ package assignment2;
 
 public class Pokemon {
 
-    // EP is short for Energy Points
-    // AP is short for Attack Power
     private String name;
     private int maxHealth;
-    private int hp;
-    private int ep;
-    private Skill skill;
+    private int hp; //Health Points
+    private int ep; //Energy Points
+    private Skill skill; 
     private EnumType type;
 
+    //Energy finals
+    final int minEP = 0;
     final int maxEP = 100;
+    final int recoverEP = 25;
+
+    //Health finals
+    final int restHP = 20;
+    final int minHP = 0;
+
+    //Effect finals
     final double SUPER_EFFECTIVE = 2;
     final double NOT_EFFECTIVE = 0.5;
 
-    public Pokemon(String name, int maxHealth, String type) {
+    //CONSTRUCTOR -------- CONSTRUCTOR -------- CONSTRUCTOR -------- CONSTRUCTOR -------- CONSTRUCTOR -------- CONSTRUCTOR -------- 
+
+    public Pokemon(String name, int maxHealth, String typeString) {
         this.name = name;
         this.maxHealth = maxHealth;
         this.hp = maxHealth;
         this.ep = 100;
-        PokemonType pokemonType = new PokemonType(type);
+        PokemonType pokemonType = new PokemonType(typeString);
         this.type = pokemonType.getEnumType();
         this.skill = null;
     }
+
+    // EQUALOVERRIDE ------- EQUALOVERRIDE ------- EQUALOVERRIDE ------- EQUALOVERRIDE ------- EQUALOVERRIDE ------- EQUALOVERRIDE -------
     public boolean equals(Object otherObject) {
 
         if (this == otherObject) {
@@ -48,115 +59,114 @@ public class Pokemon {
 
         return equalName && equalMaxHealth && equalHp && equalEp && equalType && equalSkill;
     }
-//Here we got all the setter and getters in a "short list". 
-//To be easier to access.
+    //Here we got all the setter and getters in a "short list". 
+    //To be easier to access.
+    //GET ------ SET -------- GET ------ SET -------- GET ------ SET -------- GET ------ SET -------- GET ------ SET -------- GET ------ SET -------- 
+
     public void setName(String newName) { this.name = newName; }
 
     public int getEnergy() { return ep; }
     public int getCurrentHP() { return hp; }
     public int getMAX_HP() { return maxHealth; }
     public String getName() { return name; }
-    public String getType() { return type.toString(); }
+    public String getType() { return type.getTypeString(); }
     public EnumType getEnumType() { return type; }
+    public int getPokemonSkillAttackPower(){return skill.getSkillAttackPower();}
     
 
     public String toString() {
-        String pokemon;
-        if (skill != null) {
-            pokemon = (name + " (" + type.toString() + "). Knows " + skill.toString());
-        } else {
-            pokemon = (name + " (" + type.toString() + ")");
+        String message = (name + " (" + getType() + ")");
+        if (this.skill != null){
+           message += ". Knows " + skill.toString();
         }
-        return pokemon;
-    }
+        return message;
+        
+        }
+        
+    //ATTACK SEQUENCE ------------------------------------------------------------------------------------------------------------------------------------------------------
 
     public String attack(Pokemon defender) {
 
-        String message = "";
-        // Here is when attacks are "failing"
-        if (defender.getCurrentHP() <= 0) {
-            message = String.format("Attack failed. %s fainted.", defender.name);
-        } else if ((this.getCurrentHP() <= 0)) {
-            message = String.format("Attack failed. %s fainted.", this.name);
-        } else if (this.knowsSkill() == false) {
-            message = String.format("Attack failed. %s does not know a skill.", this.name);
-        } else if (this.getEnergy() < this.skill.getSkillEnergyCost()) {
-            message = String.format("Attack failed. %s lacks energy: %d/%d", this.name, this.getEnergy(),
-                    this.skill.getSkillEnergyCost());
-        } else {
-            TypeEffectiveness typeEffectiveness = new TypeEffectiveness();
-            EnumEffectiveness effectiveness = typeEffectiveness.calcEffectiveness(this.type, defender.type);
+        String message = "Attack failed. ";
+        // V V V V V V V V V V V V V V V V V V V V V V V V V V V - Fail scenarios
 
-            // Here is when the pokemons succed with their attacks
+            if (defender.getCurrentHP() <= minHP) { //defender is fainted
+                message = String.format("%s fainted.", defender.name);
+            } 
+            else if ((this.getCurrentHP() <= minHP)) { //attacker is fainted
+                message = String.format("%s fainted.", this.name);
+            } 
+            else if (this.knowsSkill() == false) {  //attacker does not know skill
+                message = String.format("%s does not know a skill.", this.name);
+            } 
+            else if (this.getEnergy() < this.skill.getSkillEnergyCost()) {  //does not have enough EP
+                message = String.format("%s lacks energy: %d/%d", this.name, this.getEnergy(), this.skill.getSkillEnergyCost());
+
+        //Ʌ Ʌ Ʌ Ʌ Ʌ Ʌ Ʌ Ʌ Ʌ Ʌ Ʌ Ʌ Ʌ Ʌ Ʌ Ʌ Ʌ Ʌ Ʌ Ʌ Ʌ Ʌ Ʌ Ʌ Ʌ Ʌ Ʌ - Fail scenarios
+
+        } else {  //sucessfull attack
+            
             this.spendEnergy(this.skill.getSkillEnergyCost());
-            message = String.format("%s uses %s on %s.", this.name, this.skill.getName(), defender.getName());
 
-            switch (effectiveness) {
-                case SUPEREFFECTIVE:
-                    defender.receiveDamage((int) (this.skill.getSkillAttackPower() * SUPER_EFFECTIVE));
-                    message += (" It is super effective!");
-                    break;
-                case NOTEFFECTIVE:
-                    defender.receiveDamage((int) (this.skill.getSkillAttackPower() * NOT_EFFECTIVE));
-                    message += (" It is not very effective...");
-                    break;
-                default:
-                    defender.receiveDamage(this.skill.getSkillAttackPower());
-            }
-            message += String.format("\n%s has %d HP left.", defender.name, defender.getCurrentHP());
-            if (defender.getCurrentHP() <= 0) {
+
+            message = String.format("%s uses %s on %s.", this.name, this.skill.getName(), defender.getName()); //this always prints
+
+            CalculateDamage calculateDamage = new CalculateDamage(this, defender);
+            defender.receiveDamage(calculateDamage.getTotalDamage());
+            message += calculateDamage.getEffectString(); //adds effect message. is empty if normal. 
+    
+            message += String.format("\n%s has %d HP left.", defender.name, defender.getCurrentHP()); //
+
+            if (defender.getCurrentHP() <= minHP) {//if the pokemon faints 
                 message += String.format(" %s faints.", defender.name);
             }
-
         }
         return message;
     }
 
   
-
-    public boolean knowsSkill() {
-        return skill != null;
-    }
+    //SKILLS --------------------------------------------------------------------------------------------------------------------------------------------------------
+    
+    public boolean knowsSkill() { return skill != null; } //checks if pokemon knows a skill
 
     public void learnSkill(String skillName, int skillAttackPower, int skillEnergyCost) {
         this.skill = new Skill(skillName, skillAttackPower, skillEnergyCost);
     }
 
-    public void forgetSkill() {
-        skill = null;
-    }
+    public void forgetSkill() { skill = null; }
 
+    //POKEMON AFFECTS -------- POKEMON AFFECTS -------- POKEMON AFFECTS -------- POKEMON AFFECTS -------- POKEMON AFFECTS --------
+
+    public void spendEnergy(int cost) { //Setting a function that the EP never gets below minEP
+        ep -= cost;
+        if (ep < minEP) {
+            ep = minEP;
+        }
+    }
+    public void recoverEnergy() {       //Setting a fixed value of ep to recover, and also impleminting the maxEP that it wont exceed.
+        if (ep > minEP) {
+            ep += recoverEP;
+            if (ep > maxEP) {
+                ep = maxEP;
+            }
+        }
+    }
+    public void receiveDamage(int damage) {     
+        hp -= damage;
+        if (hp < minHP) {
+            hp = minHP;
+        }
+    }
     public void rest() {
-        if (hp > 0) {
-            hp += 20;
+        if (hp > minHP) {
+            hp += restHP;
             if (hp > maxHealth) {
                 hp = maxHealth;
             }
         }
     }
 
-    public void spendEnergy(int cost) {
-        ep -= cost;
-        if (ep < 0) {
-            ep = 0;
-        }
-    }
-
-    public void recoverEnergy() {
-        if (ep > 0) {
-            ep += 25;
-            if (ep > maxEP) {
-                ep = maxEP;
-            }
-        }
-    }
-
-    public void receiveDamage(int damage) {
-        hp -= damage;
-        if (hp < 0) {
-            hp = 0;
-        }
-    }
+//ITEMS ------- ITEMS ------- ITEMS ------- ITEMS ------- ITEMS ------- ITEMS ------- ITEMS ------- ITEMS ------- ITEMS ------- ITEMS ------- 
 
     public String useItem(Item item) {
         int currentHP = getCurrentHP();
