@@ -58,7 +58,6 @@ public class ItemBag {
 
         //A method to remove an item from the itembag.
         //If the item referenced to be removed is not accepted
-        // 
 
     public Item removeItemAt (int index) {
         if(index < 0 || index >= itemsInBag.size()) {
@@ -68,7 +67,7 @@ public class ItemBag {
         return itemsInBag.remove(index);
     }
 
-    //The methoed below is used to peek at an item by a specific Index.
+    //The method below is used to peek at an item by a specific Index.
     //If the index is out of bounds it returns an empty string
 
     public String peekItemAt (int index) {

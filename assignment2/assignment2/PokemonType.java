@@ -5,9 +5,9 @@ public class PokemonType {
     private EnumType enumType;
 
 
-
+    //A function to match the "end user's" input with our Enum.
     public PokemonType(String typeString) {
-        switch (typeString.trim().toUpperCase()) {      //A function to match the "end user's" input with our Enum.
+        switch (typeString.trim().toUpperCase()) {      
             case "FIRE":
                 this.enumType = EnumType.FIRE;
                 break;
@@ -42,7 +42,7 @@ public class PokemonType {
     public EnumType getEnumType() { return enumType; }
 
     public String toString() {
-        return enumType.toString();
+        return enumType.getTypeString();
     }
 
 }

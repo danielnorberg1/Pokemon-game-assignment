@@ -7,7 +7,7 @@ public class CalculateDamage {
     private String effectString;
     private int totalDamage;
     
-
+    //A object that is made when an attack is sucessfull that contains calculates gets the effectiveness and calculates the totalt damage and also forwards the message. 
     public CalculateDamage(Pokemon attacker, Pokemon defender){
         this.attacker = attacker;
         this.defender = defender;

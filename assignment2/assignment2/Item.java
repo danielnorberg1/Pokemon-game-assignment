@@ -31,14 +31,14 @@ public class Item {
     }
 
 
-   // A tostring that truncates the weight to 2 decimals, and prints the Stats for an item.
+   // A tostring that truncates the weight to 2 decimals, by casting to an int and then prints the Stats for an item.
     public String toString() {
         double truncatedWeight = ((int) (this.getWeight() * 100)) / 100.0; //the weight is casted to an int 
 
         return String.format("%s heals %d HP. (%.2f)", this.getItemName(), this.getHealingPower(), truncatedWeight);
     }
 
-    // A method for checking if two created items are equal. Only if all 3 attributes are the same, an item is the same.
+    // A method for checking if two created items are equal. Only if all 3 attributes are the same, an item is equal.
 
     public boolean equals(Object obj) {
 

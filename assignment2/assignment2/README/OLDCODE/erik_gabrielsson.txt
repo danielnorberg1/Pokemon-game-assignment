@@ -2,7 +2,7 @@ DESIGN TASK 8; Explanation.
 
 To showchase the changes made after the costumer updated the initial request, below is an example of the Fire type.
 
-  public EnumEffectiveness calcEffectiveness(EnumType attType, EnumType defType){
+  public static EnumEffectiveness calcEffectiveness(EnumType attType, EnumType defType){
         
         switch (attType) {
             case FIRE:

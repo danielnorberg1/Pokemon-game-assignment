@@ -22,7 +22,7 @@ public class Pokemon {
     final double SUPER_EFFECTIVE = 2;
     final double NOT_EFFECTIVE = 0.5;
 
-    //CONSTRUCTOR -------- CONSTRUCTOR -------- CONSTRUCTOR -------- CONSTRUCTOR -------- CONSTRUCTOR -------- CONSTRUCTOR -------- 
+    //CONSTRUCTOR --------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
     public Pokemon(String name, int maxHealth, String typeString) {
         this.name = name;
@@ -34,12 +34,14 @@ public class Pokemon {
         this.skill = null;
     }
 
-    // EQUALOVERRIDE ------- EQUALOVERRIDE ------- EQUALOVERRIDE ------- EQUALOVERRIDE ------- EQUALOVERRIDE ------- EQUALOVERRIDE -------
+    // EQUALOVERRIDE -------------------------------------------------------------------------------------------------------------------------------------------------------------------
     public boolean equals(Object otherObject) {
 
+        //checks if they are the same object
         if (this == otherObject) {
             return true;
         }
+        //checks if the object is null, or even a pokemon. 
         if (otherObject == null || !(otherObject instanceof Pokemon)) {
             return false;
         }
@@ -51,6 +53,8 @@ public class Pokemon {
         boolean equalHp = this.hp == otherPokemon.hp;
         boolean equalEp = this.ep == otherPokemon.ep;
         boolean equalType = this.type == otherPokemon.type;
+
+        //if the pokemon has no skill we will get an error with .equals
         if ((this.skill == null) || (otherPokemon.skill == null)){
             equalSkill = this.skill == otherPokemon.skill;
         } else {
@@ -61,7 +65,7 @@ public class Pokemon {
     }
     //Here we got all the setter and getters in a "short list". 
     //To be easier to access.
-    //GET ------ SET -------- GET ------ SET -------- GET ------ SET -------- GET ------ SET -------- GET ------ SET -------- GET ------ SET -------- 
+    //GET/SET-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
     public void setName(String newName) { this.name = newName; }
 
@@ -135,7 +139,7 @@ public class Pokemon {
 
     public void forgetSkill() { skill = null; }
 
-    //POKEMON AFFECTS -------- POKEMON AFFECTS -------- POKEMON AFFECTS -------- POKEMON AFFECTS -------- POKEMON AFFECTS --------
+    //POKEMON AFFECTS -------------------------------------------------------------------------------------------------------------------------------------------------------
 
     public void spendEnergy(int cost) { //Setting a function that the EP never gets below minEP
         ep -= cost;
@@ -166,7 +170,7 @@ public class Pokemon {
         }
     }
 
-//ITEMS ------- ITEMS ------- ITEMS ------- ITEMS ------- ITEMS ------- ITEMS ------- ITEMS ------- ITEMS ------- ITEMS ------- ITEMS ------- 
+//ITEMS ------------------------------------------------------------------------------------------------------------------------------------------------------------
 
     public String useItem(Item item) {
         int currentHP = getCurrentHP();

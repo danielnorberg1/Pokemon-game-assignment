@@ -4,11 +4,8 @@ Here is the old code before the task 8 was published.
 // Old code before task 8
 
 public class TypeEffectivenessOLD{
-    public TypeEffectivenessOLD(){
-            
-        }
 
-    public EnumEffectiveness calcEffectiveness(EnumType attType, EnumType defType){
+    public static EnumEffectiveness calcEffectiveness(EnumType attType, EnumType defType){
         
         switch (attType) {
             case FIRE:
@@ -51,11 +48,8 @@ And here is the updated version after task 8.
 package assignment2;
 
 public class TypeEffectiveness {
-    public TypeEffectiveness() {
 
-    }
-
-    public EnumEffectiveness calcEffectiveness(EnumType attType, EnumType defType) {
+    public static EnumEffectiveness calcEffectiveness(EnumType attType, EnumType defType) {
 
         switch (attType) {
             case BUG:
