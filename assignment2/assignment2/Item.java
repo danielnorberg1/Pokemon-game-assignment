@@ -2,13 +2,13 @@ package assignment2;
 
 public class Item {
 
-    // attributes - variabler
+    // attributes
 
     private String itemName;
     private int healingPower;
     private double weight;
 
-    // Constructor
+    // Constructor for creating an Item.
 
     public Item(String itemName, int healingPower, double weight) {
         this.itemName = itemName;
@@ -30,25 +30,22 @@ public class Item {
         return weight;
     }
 
-    // setters
 
-    // the Math.floor was taken from stack overflow When i wrote the code in the way
-    // i known how it result
-    // 4 rows of code,
+   // A tostring that truncates the weight to 2 decimals, and prints the Stats for an item.
     public String toString() {
-        double truncatedWeight = Math.floor(this.getWeight() * 100) / 100;
+        double truncatedWeight = ((int) (this.getWeight() * 100)) / 100.0; //the weight is casted to an int 
 
         return String.format("%s heals %d HP. (%.2f)", this.getItemName(), this.getHealingPower(), truncatedWeight);
     }
 
-    // methods
+    // A method for checking if two created items are equal. Only if all 3 attributes are the same, an item is the same.
 
     public boolean equals(Object obj) {
 
         if (this == obj)
             return true;
 
-        if (obj == null  || !(obj instanceof Item)) {
+        if (obj == null) {
             return false;
         }
 
