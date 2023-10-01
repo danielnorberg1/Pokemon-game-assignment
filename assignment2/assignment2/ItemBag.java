@@ -6,12 +6,13 @@ import java.util.List;
 
 public class ItemBag {
 
-    //variabler
+    //attributes
+
     private double maxWeight;
     private double currentWeight;
-    private List <Item> itemsInBag;
+    private List <Item> itemsInBag; //A list of object Item.
 
-    //Constructor
+    //Constructor for creating the Itembag.
 
     public ItemBag(double maxWeight) {
         this.maxWeight = maxWeight;
@@ -19,7 +20,7 @@ public class ItemBag {
         this.itemsInBag = new ArrayList<Item>();
         }
 
-        //getters
+     //getters
 
    public int getNumOfItems() {
         return itemsInBag.size();
@@ -35,6 +36,10 @@ public class ItemBag {
 
     
     //Methods
+    //First a method to add an item to the bag.
+    //it iterates through the list checking wheter or not the added item is
+    //the heaviest. Start at index 0 working its way up. When it finds an item that weighs less,
+    // it places itself an index below that.
 
     public double addItem(Item item){
         int index = 0;
@@ -51,6 +56,9 @@ public class ItemBag {
         }
  
 
+        //A method to remove an item from the itembag.
+        //If the item referenced to be removed is not accepted
+        // 
 
     public Item removeItemAt (int index) {
         if(index < 0 || index >= itemsInBag.size()) {
@@ -60,6 +68,9 @@ public class ItemBag {
         return itemsInBag.remove(index);
     }
 
+    //The methoed below is used to peek at an item by a specific Index.
+    //If the index is out of bounds it returns an empty string
+
     public String peekItemAt (int index) {
         if (index < 0 || index >= itemsInBag.size()) {
             return "";
@@ -67,6 +78,9 @@ public class ItemBag {
         Item item = itemsInBag.get(index);
                 return item.toString(); 
     }
+
+    //popItem is a method that pops an item.
+    //It subtracts and returns the current weight, if the weight is not empty, then null.
 
     public Item popItem() {
         if (!itemsInBag.isEmpty()) {
