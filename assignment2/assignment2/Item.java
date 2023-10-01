@@ -36,7 +36,7 @@ public class Item {
     // i known how it result
     // 4 rows of code,
     public String toString() {
-        double truncatedWeight = Math.floor(this.getWeight() * 100) / 100;
+        double truncatedWeight = ((int) (this.getWeight() * 100)) / 100.0; //the weight is casted to an int
 
         return String.format("%s heals %d HP. (%.2f)", this.getItemName(), this.getHealingPower(), truncatedWeight);
     }
