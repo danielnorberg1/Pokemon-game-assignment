@@ -1,0 +1,38 @@
+DESIGN TASK 8; Explanation.
+
+To showchase the changes made after the costumer updated the initial request, below is an example of the Fire type.
+
+  public EnumEffectiveness calcEffectiveness(EnumType attType, EnumType defType){
+        
+        switch (attType) {
+            case FIRE:
+                switch (defType){
+                    case GRASS:
+                        return EnumEffectiveness.SUPEREFFECTIVE;
+                    case NORMAL: 
+                        return EnumEffectiveness.NORMALEFFECTIVE;
+                    default:
+                        return EnumEffectiveness.NOTEFFECTIVE;
+
+
+The design that we went with to calculate attack effectiveness depending on type involved Enums.
+When the costumer decided to add a bunch of types and what is effective to what, all that was left to do was to update the "type Enum" with the new typs, 
+and add the types ant their corresponding strength/weaknesses into our witch case for attacks.
+
+Below is an exmaple for how it looked to calculate the type "Fire" after the changes.
+
+case FIRE:
+                switch (defType) {
+                    case GRASS, BUG, ICE:
+                        return EnumEffectiveness.SUPEREFFECTIVE;
+                    case WATER, FIRE, DRAGON:
+                        return EnumEffectiveness.NOTEFFECTIVE;
+                    default:
+                        return EnumEffectiveness.NORMALEFFECTIVE;
+
+When reading the updated request we could see that now, fire is not only Super Effective against grass, but also against BUG and ICE.
+So what we did was add Bug and Ice in the Enum calculation for Supereffective, if they are defending against Fire.
+Likewise for the not effective types, we added Dragon.
+So now when it iterates through the switch case, it finds updated Defending types updated that also should have the same Enum Effectiveness calculation upon them when called.
+
+We found the enum way to tackle this design task was good from the start, and despite exploring other options, felt that what was done first was changeable and expandable.
