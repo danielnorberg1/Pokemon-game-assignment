@@ -126,7 +126,6 @@ public class TypeEffectiveness {
     }
 }
 
-<<<<<<< HEAD
 As you can se the structure of the code and how it works was not changed.
 We had many reasons for not changing the code.
 In the initial (and used) design the code had many advantages such as:
@@ -144,7 +143,3 @@ But... since the customer did not want to have more than 8 types. We decided to 
 And yes... we were thinking about using Maps who would be good for expandability, but in 
 the end we went with the existing code since we thought as mention earlier that is is:
 Easy to read, Maintainable, and "kind of" expandable.
-=======
-As you can se the structure of the code and how it works was not changed. We had many reasons for not changing the code.
-In the initial design the class was following a modular approach for calcualating the type effectiveness
->>>>>>> ade88f34d8db64aadf3b0d618a27ced74c547895
